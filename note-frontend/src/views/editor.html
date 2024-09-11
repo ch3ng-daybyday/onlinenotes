@@ -1,0 +1,49 @@
+ <template>
+  <div id="editor-container">
+    <div id="toolbar">
+      <button onclick="format('bold')">Bold</button>
+      <button onclick="format('italic')">Italic</button>
+      <button onclick="format('underline')">Underline</button>
+      <button onclick="format('insertOrderedList')">Ordered List</button>
+      <button onclick="format('insertUnorderedList')">Unordered List</button>
+      <button onclick="format('justifyLeft')">Align Left</button>
+      <button onclick="format('justifyCenter')">Align Center</button>
+      <button onclick="format('justifyRight')">Align Right</button>
+    </div>
+    <div id="editor" contenteditable="true">
+      <p>Start writing here...</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</template>
+<style>
+    /* styles.css */
+#editor-container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#toolbar {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+#toolbar button {
+  margin-right: 5px;
+  padding: 5px;
+}
+
+#editor {
+  min-height: 300px;
+  outline: none;
+}
+</style>
+<script>    
+    // script.js
+function format(command) {
+  document.execCommand(command, false, null);
+}
+</script>

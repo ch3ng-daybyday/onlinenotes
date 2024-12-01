@@ -8,8 +8,9 @@
             "type": "chrome",
             "request": "launch",
             "name": "vue chrome",
-            "url": "http://192.168.0.108:8080/",
+            "url": " http://localhost:8080/",
             "webRoot": "${workspaceFolder}",
+            "sourceMaps": false
         }
     ]
 }

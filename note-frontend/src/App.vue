@@ -1,16 +1,18 @@
 <template>
-  <NoteEditor msg="Welcome to Your Vue.js App"/>
+  <!-- <userUserRegister msg="Welcome to Your Vue.js App"/> -->
+   
+  <router-view></router-view> 
 </template>
 
 <script>
-import NoteEditor from './components/NoteEditor.vue'
+// import userUserRegister from './components/account/UserRegister.vue'
+// export default {
+//   name: 'App',
+//   components: {
+//     userUserRegister
+//   }
+// }
 
-export default {
-  name: 'App',
-  components: {
-    NoteEditor
-  }
-}
 </script>
 
 <style>

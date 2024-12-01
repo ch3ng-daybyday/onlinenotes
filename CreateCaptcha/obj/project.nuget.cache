@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "c2NcszrMEaYzZCNeZDKXXtCwSFuEULmUltc7kYRM5SnV7nbPn9anch6ZkpA6LiDJKqLKTBWube2fNtlBpIK1nQ==",
+  "success": true,
+  "projectFilePath": "E:\\Desktop\\online note\\CreateCaptcha\\CreateCaptcha.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\panch\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\panch\\.nuget\\packages\\system.drawing.common\\8.0.10\\system.drawing.common.8.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}

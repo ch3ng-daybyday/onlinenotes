@@ -1,0 +1,7 @@
+
+note-frontend/node_modules/
+note-frontend/dist/
+note-frontend/.vscode/
+note-backend/.vs
+
+

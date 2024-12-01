@@ -1,14 +1,15 @@
 <template>
   <div class="note-editor">
     <!-- 笔记标题输入框 -->
-    <input v-model="note.title" placeholder="标题" class="title-input" />  
+    <input v-model="note.title" placeholder="标题" class="title-input" />
 
     <!-- Quill 编辑器 -->
-    <quillEditor v-model="note.content" :modules="quillModules"   @text-change="onEditorChange" class="quill-editor" />
-
+    <quillEditor v-model="note.content" :modules="quillModules" @text-change="onEditorChange" ref="quillEditor"
+      class="quill-editor" />
     <!-- 保存按钮 -->
     <button @click="saveNote">Save Note</button>
-
+    <p>{{ note.title }}</p>
+    <p>{{ note.content }}</p>
     <!-- 提示信息 -->
     <p v-if="successMessage" class="success">{{ successMessage }}</p>
     <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
@@ -16,8 +17,9 @@
 </template>
 
 <script>
-import { quillEditor } from 'vue3-quill';
-import hljs  from 'highlight.js';
+import { quillEditor } from 'vue-quill-editor';
+import hljs from 'highlight.js';
+import 'quill/dist/quill.snow.css';
 import 'highlight.js/styles/default.css';
 import axios from 'axios';
 
@@ -33,7 +35,7 @@ export default {
       },
       quillModules: {
         syntax: {
-          highlight: text => hljs.highlightAuto(text).value,   
+          highlight: text => hljs.highlightAuto(text).value,
         },
         toolbar: [
           [{ header: [1, 2, false] }],
@@ -50,6 +52,9 @@ export default {
     };
   },
   methods: {
+    async onEditorChange() {
+      this.$refs.quillEditor.getEditor();
+    },
     async saveNote() {
       try {
         const response = await axios.post('https://localhost:7235/api/notes/', this.note);

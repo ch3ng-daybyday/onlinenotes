@@ -1,0 +1,12 @@
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ApiResponseCommon.GeneratedMSBuildEditorConfig.editorconfig
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ApiResponseCommon.AssemblyInfoInputs.cache
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ApiResponseCommon.AssemblyInfo.cs
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ApiResponseCommon.csproj.CoreCompileInputs.cache
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ApiResponseCommon.sourcelink.json
+E:\Desktop\online note\ApiResponseCommon\bin\Debug\net8.0\ApiResponseCommon.deps.json
+E:\Desktop\online note\ApiResponseCommon\bin\Debug\net8.0\ApiResponseCommon.dll
+E:\Desktop\online note\ApiResponseCommon\bin\Debug\net8.0\ApiResponseCommon.pdb
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ApiResponseCommon.dll
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\refint\ApiResponseCommon.dll
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ApiResponseCommon.pdb
+E:\Desktop\online note\ApiResponseCommon\obj\Debug\net8.0\ref\ApiResponseCommon.dll

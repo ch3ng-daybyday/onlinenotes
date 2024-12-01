@@ -1,0 +1,13 @@
+E:\Desktop\online note\CreateCaptcha\bin\Debug\net8.0\CreateCaptcha.deps.json
+E:\Desktop\online note\CreateCaptcha\bin\Debug\net8.0\CreateCaptcha.dll
+E:\Desktop\online note\CreateCaptcha\bin\Debug\net8.0\CreateCaptcha.pdb
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.csproj.AssemblyReference.cache
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.GeneratedMSBuildEditorConfig.editorconfig
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.AssemblyInfoInputs.cache
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.AssemblyInfo.cs
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.csproj.CoreCompileInputs.cache
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.sourcelink.json
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.dll
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\refint\CreateCaptcha.dll
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\CreateCaptcha.pdb
+E:\Desktop\online note\CreateCaptcha\obj\Debug\net8.0\ref\CreateCaptcha.dll

@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "2DfUU1ZC7BKMgogNUDAlQgXefJOFnrZcwJhD3Jwr2Cs=",
+  "Source": "note-backend",
+  "BasePath": "_content/note-backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "note-backend\\wwwroot",
+      "Source": "note-backend",
+      "ContentRoot": "E:\\Desktop\\online note\\note-backend\\wwwroot\\",
+      "BasePath": "_content/note-backend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

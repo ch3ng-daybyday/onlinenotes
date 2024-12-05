@@ -10,7 +10,7 @@ namespace note_backend.Services
     public class RegistrationFilter : IAsyncActionFilter
     {
         private readonly IMemoryCache _memoryCache;
-        
+
 
         public RegistrationFilter(IMemoryCache memoryCache)
         {
@@ -22,17 +22,19 @@ namespace note_backend.Services
             string? ipAddress = context.HttpContext.Connection.RemoteIpAddress?.ToString();
             if (ipAddress != null)
             {
-                var cachekey = $"OnlineNote_{ipAddress}";
-                if (_memoryCache.TryGetValue(cachekey, out int resCount))
+                var requestTimesKey = $"OnlineNote_request_time_{ipAddress}";
+                if (_memoryCache.TryGetValue(requestTimesKey, out int resCount))
                 {
-                    _memoryCache.Set(cachekey, resCount, TimeSpan.FromMinutes(15));
                     if (resCount > 5)
                     {
-                        var cachekey_IpAddress = $"OnlineNote_captcha_{ipAddress}";
+                        var captchakey = $"OnlineNote_captcha_{ipAddress}";
                         context.ActionArguments.TryGetValue("user", out Object? req);
-                        _memoryCache.TryGetValue(cachekey_IpAddress, out cachekey);
-                        if (((UserDTO)req).Captchakey.Equals(cachekey))
+                        //string captchaValue = "";
+                        _memoryCache.TryGetValue(captchakey, out string captchaValue);
+                        if (captchaValue != null && ((UserDTO)req).Captchakey.Equals(captchaValue))
                         {
+                            _memoryCache.Remove(captchakey);//
+                            _memoryCache.Remove(requestTimesKey);
                             await next();
                         }
                         else
@@ -56,11 +58,12 @@ namespace note_backend.Services
                     else
                     {
                         resCount = resCount + 1;
+                        _memoryCache.Set(requestTimesKey, resCount, TimeSpan.FromMinutes(15));
                     }
                 }
                 else
                 {
-                    _memoryCache.Set(cachekey, 1, TimeSpan.FromMinutes(15));
+                    _memoryCache.Set(requestTimesKey, 1, TimeSpan.FromMinutes(15));
                 }
             }
             else

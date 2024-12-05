@@ -10,7 +10,7 @@
             "name": "vue chrome",
             "url": " http://localhost:8080/",
             "webRoot": "${workspaceFolder}",
-            "sourceMaps": false
+            "sourceMaps": true
         }
     ]
 }

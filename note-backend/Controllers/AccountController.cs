@@ -48,8 +48,20 @@ namespace note_backend.Controllers
                 {
                     Status = "success",
                     Message = "注册成功",
-                    Token = loginRes.Item2
-                });
+                    Token = loginRes.Item2,
+                    Meta = new ApiResponseCommon.ApiResponseMetadata
+                    {
+                        Captcha = new ApiResponseCommon.CaptchaMetadata
+                        {
+                            Enabled = false
+                        },
+                       User =new ApiResponseCommon.UserVerificationMetadata
+                       {
+                           Verified = true,
+                       }
+                    },
+                    
+                }); ;
             }
             else
             {
@@ -67,23 +79,24 @@ namespace note_backend.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
+        [ServiceFilter(typeof(RegistrationFilter))]
         [HttpPost]
         public async Task<ActionResult> Login(UserDTO user)
         {
             (bool, string) result = await _userServices.useLogin(user.user.UserName, user.PassWord, user.user.Email);
-                return Ok(new ApiResponseCommon.ResponseBase
+            return Ok(new ApiResponseCommon.ResponseBase
+            {
+                Status = "success",
+                Meta = new ApiResponseCommon.ApiResponseMetadata
                 {
-                    Status = "success",
-                    Meta = new ApiResponseCommon.ApiResponseMetadata
+                    User = new ApiResponseCommon.UserVerificationMetadata
                     {
-                        User = new ApiResponseCommon.UserVerificationMetadata
-                        {
 
-                            Verified = result.Item1,
-                        }
-                    },
-                    Token = result.Item2
-                });
+                        Verified = result.Item1,
+                    }
+                },
+                Token = result.Item2
+            });
         }
     }
 }

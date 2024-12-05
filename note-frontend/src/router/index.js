@@ -3,6 +3,7 @@ import NoteListView from '@/views/notes/NoteListView.vue';
 import NoteEditView from '@/views/notes/NoteEditView.vue';
 import LoginView from '@/views/account/UserLoginView.vue';
 import RegisterView from '@/views/account/UserRegisterView.vue';
+import home from '@/views/home.vue';
 const routes = [
   {
     path: '/login',
@@ -30,6 +31,12 @@ const routes = [
     path: '/notes/:id/edit',
     name: 'edit-note',
     component: NoteEditView
+  }
+  ,
+  {
+    path: '/home',
+    name: 'home',
+    component: home
   }
 ];
 

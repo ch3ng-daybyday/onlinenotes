@@ -11,13 +11,14 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Http;
 namespace note_backend.Services
 {
     public class UserServices
     {
         private readonly UserManager<User> userManager;
         private readonly RoleManager<Role> roleManager;
-        private readonly IMemoryCache memoryCache;
+        private readonly IMemoryCache _memoryCache;
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly string? ipAddress;
         private readonly VerificationCode verificationCode;
@@ -26,7 +27,7 @@ namespace note_backend.Services
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
-            this.memoryCache = memoryCache;
+            this._memoryCache = memoryCache;
             this.httpContextAccessor = httpContextAccessor;
             ipAddress = httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString();
             this.verificationCode = verificationCode;
@@ -61,7 +62,7 @@ namespace note_backend.Services
         {
             var gaptha = CreateCaptchaKey();
             var cachekey = $"OnlineNote_captcha_{ipAddress}";
-            memoryCache.Set(cachekey, gaptha.Item2, new MemoryCacheEntryOptions
+            _memoryCache.Set(cachekey, gaptha.Item2, new MemoryCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
             });
@@ -87,8 +88,17 @@ namespace note_backend.Services
             var success = await userManager.CheckPasswordAsync(user!, passWord);
             if (success)
             {
-                //创建 jwt信息
-                loginMsg = creatJWT(user);
+                var ipaddress = httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+                if (ipaddress == null)
+                {
+                    success = false;
+                }
+                else
+                {
+                    loginMsg = creatJWT(user);//登录成功需要去掉内存中对应IP的请求次数
+                    string requestTimesKey = $"OnlineNote_request_time_{ipaddress}";
+                    _memoryCache.Remove(requestTimesKey);
+                }
             }
             return (success, loginMsg);
         }

@@ -61,6 +61,13 @@ export default {
           if (response.data.meta.captcha.enabled) {
             this.CaptchEnabled = response.data.meta.captcha.enabled;
             this.refreshCaptcha();
+            return;
+          }
+          if (response.data.meta.user.verified) {
+            //login success
+            localStorage.setItem("userInfo", response.data.token);
+            this.error = response.data.token;
+            this.$router.push({ name: "home" });
           }
         } else if (response.data.status == "fail") {
           console.log(response.data.message);
@@ -140,7 +147,7 @@ button:hover {
   margin-top: 10px;
   color: #007bbf;
 }
- 
+
 .login-link a {
   text-decoration: none;
   color: #0095f6;

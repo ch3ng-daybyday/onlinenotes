@@ -27,6 +27,11 @@ namespace note_backend.Controllers
             string contentType = "image/png";
             return File(_userServices.CreateCaptchaBindIp(), contentType);
         }
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [ServiceFilter(typeof(RegistrationFilter))]
         [HttpPost]
         public async Task<ActionResult> Register([FromBody] UserDTO user)
@@ -57,6 +62,11 @@ namespace note_backend.Controllers
             }
 
         }
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Login(UserDTO user)
         {

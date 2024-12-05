@@ -2,12 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
+using note_backend.Models;
+using System.Net;
 
 namespace note_backend.Services
 {
     public class RegistrationFilter : IAsyncActionFilter
     {
         private readonly IMemoryCache _memoryCache;
+        
 
         public RegistrationFilter(IMemoryCache memoryCache)
         {
@@ -23,22 +26,32 @@ namespace note_backend.Services
                 if (_memoryCache.TryGetValue(cachekey, out int resCount))
                 {
                     _memoryCache.Set(cachekey, resCount, TimeSpan.FromMinutes(15));
-                    if (resCount > 6)
+                    if (resCount > 5)
                     {
-                        //验证码
-                        context.Result = new OkObjectResult(new ResponseBase()
+                        var cachekey_IpAddress = $"OnlineNote_captcha_{ipAddress}";
+                        context.ActionArguments.TryGetValue("user", out Object? req);
+                        _memoryCache.TryGetValue(cachekey_IpAddress, out cachekey);
+                        if (((UserDTO)req).Captchakey.Equals(cachekey))
                         {
-                            Status = "success",
-                            Message = "需要验证码验证",
-                            Meta = new ApiResponseMetadata()
+                            await next();
+                        }
+                        else
+                        {
+                            //验证码
+                            context.Result = new OkObjectResult(new ResponseBase()
                             {
-                                Captcha = new CaptchaMetadata()
+                                Status = "success",
+                                Message = "需要验证码验证",
+                                Meta = new ApiResponseMetadata()
                                 {
-                                    Enabled = true
+                                    Captcha = new CaptchaMetadata()
+                                    {
+                                        Enabled = true
+                                    }
                                 }
-                            }
-                        });
-                        return;
+                            });
+                            return;
+                        }
                     }
                     else
                     {

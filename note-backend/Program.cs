@@ -20,16 +20,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<RedisCacheService>();
 builder.Services.AddScoped<VerificationCode>();
+builder.Services.AddScoped<JWTTokenGenerator>();
 //JWT
-builder.Services.Configure<JWTOption>(builder.Configuration.GetSection("JWT"));
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(x =>
+builder.Services.Configure<JWTOption>(builder.Configuration.GetSection("JWT")).AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(x =>
 {
     JWTOption jwtObj = builder.Configuration.GetSection("JWT").Get<JWTOption>()!;
     byte[] ketBytes = Encoding.UTF8.GetBytes(jwtObj.SigningKey);
     var secKey = new SymmetricSecurityKey(ketBytes);
     x.TokenValidationParameters = new TokenValidationParameters()
     {
-
         ValidateIssuer = false,
         ValidateAudience = false,
         ValidateLifetime = true,
@@ -89,7 +88,7 @@ if (app.Environment.IsDevelopment())
 //use cors
 app.UseCors("AllowSpecificOrigin");
 app.UseHttpsRedirection();
-app.UseAuthentication();    
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

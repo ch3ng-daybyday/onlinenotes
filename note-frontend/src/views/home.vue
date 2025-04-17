@@ -1,15 +1,17 @@
 <template>
   <div>
-    homePage
+    <NavigationComponent/>
   </div>
 </template>
 
 <script>
+import NavigationComponent from '@/components/Navigation.vue';
 export default {
-name: 'homePage'
+  name: 'homePage',
+  components: {
+    NavigationComponent
+  }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

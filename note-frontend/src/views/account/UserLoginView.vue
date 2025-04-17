@@ -14,6 +14,7 @@
         <img :src="captchaUrl" alt="验证码" @click="refreshCaptcha" />
         <input type="text" v-model="captcha" required />
       </div>
+      
       <button type="submit">登录</button>
       <p class="login-link">未有账号，请<router-link to="/register">注册</router-link></p>
 
@@ -24,7 +25,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {  
   data() {
     return {
@@ -36,13 +36,13 @@ export default {
       CaptchEnabled:false
     };
   },
+ 
   mounted() {
     this.refreshCaptcha();
   },
   methods: {
     async handleLogin() {
       this.error = null;
-      // 这里可以替换成你的 API 接口
       try {
         const response = await axios.post('https://localhost:7183/account/Login', {
           user: {

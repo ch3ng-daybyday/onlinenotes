@@ -4,6 +4,12 @@ import NoteEditView from '@/views/notes/NoteEditView.vue';
 import LoginView from '@/views/account/UserLoginView.vue';
 import RegisterView from '@/views/account/UserRegisterView.vue';
 import home from '@/views/home.vue';
+import setting from '@/views/account/setting.vue';
+import userProfile from '@/views/account/Profile.vue';
+import DocumentSignature from '@/views/signature.vue';
+import VideoPlay from '@/views/video/VideoPlay.vue';
+import VideoUpload from '@/views/video/VideoUpload.vue';
+
 const routes = [
   {
     path: '/login',
@@ -36,13 +42,44 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: home
+    component: home,
+    children: [
+      {
+        path: 'setting',
+        name: 'setting',
+        component: setting
+
+      },
+      {
+        path: 'profile',
+        name: 'profile',
+        component: userProfile
+
+      }
+    ]
+  }
+  ,
+  {
+    path: '/signature',
+    name: 'DocumentSignature',
+    component: DocumentSignature
+  }
+  ,
+  {
+    path: '/VideoPlay',
+    name: VideoPlay,
+    component: VideoPlay
+  },
+  {
+    path:'/VideoUpload',
+    name: VideoUpload,
+    component:VideoUpload
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 export default router;
